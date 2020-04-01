@@ -1,9 +1,9 @@
 from django.shortcuts import render , HttpResponse
-
+# from .formulario import LoginForm
 #HttpResponse
 #JsonResponse
 #Render
 # Create your views here.
-def HOME(request):
-    mensaje = 'Mensaje De HOME en view USUARIOS'
-    return render(request,'Usuarios_home.html',{'mensaje':mensaje})
+def Home(request):
+    return render(request,'Home_usuario.html')
+#

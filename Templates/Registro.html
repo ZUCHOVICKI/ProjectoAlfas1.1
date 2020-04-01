@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Registro de Usuarios</title>
+  </head>
+  <body>
+
+<div class="container">
+  <div class="container">
+    <h4 class="text-center">Registro</h4>
+  </div>
+  <div class="container">
+    {%if messages%}
+      {%for message in messages%}
+        {{message}}
+      {%endfor%}
+    {%endif%}
+    {{form.non_field_errors}}
+      <form class="" action="#" method="POST">
+        {% csrf_token %}
+        {%for field in form%}
+          <div class="form-group">
+            {{field.errors}}
+            {{field.label_tag}}
+            {{field}}
+            <small class="form-text text-muted">{{field.help_text}}</small>
+
+          </div>
+        {%endfor%}
+        <!-- <div class="form-group">
+          {{form.username.label_tag}}
+          {{form.username}}
+          {{form.password.label_tag}}
+          {{form.password}}
+        </div> -->
+      <input type="submit" name="" class="btn btn-primary" value="Registrarse">
+      </form>
+  </div>
+
+
+</div>
+
+  </body>
+</html>

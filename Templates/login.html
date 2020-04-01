@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Home Usuarios</title>
+  </head>
+  <body>
+  <!-- <h1>HOLA SOY UN HTML EN DJANGO</h1> -->
+
+
+  <!-- {% if mensaje%}
+    {{mensaje}}
+  {%else%}
+    <p>NO EXISTE</p>
+  {%endif%} -->
+  <div class="container">
+
+<div class="container">
+<h2 class="text-center">Login Spotify</h2>
+</div>
+
+<div class="container">
+
+{{form.non_field_errors}}
+  <form class="" action="#" method="POST">
+    {% csrf_token %}
+    {%for field in form%}
+      <div class="form-group">
+        {{field.label_tag}}
+        {{field}}
+      </div>
+    {%endfor%}
+    <!-- <div class="form-group">
+      {{form.username.label_tag}}
+      {{form.username}}
+      {{form.password.label_tag}}
+      {{form.password}}
+    </div> -->
+  <input type="submit" name="" class="btn btn-primary" value="Iniciar Sesion">
+  </form>
+</div>
+
+
+  </div>
+  </body>
+</html>

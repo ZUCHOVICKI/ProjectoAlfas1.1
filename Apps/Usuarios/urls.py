@@ -17,5 +17,5 @@ from django.contrib import admin
 from django.urls import path
 from Apps.Usuarios import views as views_usuarios
 urlpatterns = [
-    path('HOME',views_usuarios.HOME,name='HOME'),
+    path('',views_usuarios.Home,name='Home'),
 ]
