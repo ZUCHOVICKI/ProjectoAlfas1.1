@@ -2,8 +2,8 @@ from django.db import models
 import os
 from django.conf import settings
 from django.contrib.auth.models import User
-
-
+from django.contrib.auth.models import AbstractUser
+from Apps.Usuarios.models import User
 def image_Path():
     return os.path.join(settings.STATICFILES_DIR,'img')
 def image_Path_User():
@@ -41,6 +41,20 @@ class Album(models.Model):
         return self.nombre
 
 
+class User(AbstractUser):
+
+    PAISES = [
+
+        ('MX','Mexico')
+        , ('EU','Estados Unidos')
+    ]
+
+
+    is_premium = models.BooleanField(default=False,null=False,blank=False)
+    fechaNacimiento = models.DateField(auto_now = False , auto_now_add = False,null=True,blank=True)
+    pais = models.CharField(max_length = 2, choices = PAISES,null=False,blank=False)
+    foto = models.ImageField(upload_to=image_Path_User,null=True,blank=True)
+    is_artist = models.BooleanField(default=False,null=False,blank=False)
 # class Usuario(models.Model):
 #     nombre =  models.CharField(max_length = 60)
 #     apellidos  =  models.CharField(max_length = 100, null= True)
