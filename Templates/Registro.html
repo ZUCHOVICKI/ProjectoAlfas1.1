@@ -2,14 +2,67 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Rubik:wght@500&display=swap" rel="stylesheet"> 
+     <!-- Compiled and minified CSS -->
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+ <!-- Compiled and minified JavaScript -->
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <meta charset="UTF-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <title>Registro de Usuarios</title>
   </head>
+  <style>
+
+.log{
+        font-family: 'Rubik', sans-serif;
+        margin-left: 20px;
+        font-size: 50px;
+        text-shadow: 2px 2px  #22C95C;
+    }
+    .PG{
+        font-family: 'Montserrat', sans-serif;
+        margin-right: 10px;
+    }
+    .Selected{
+      text-shadow: 2px 2px  #22C95C;
+
+    }
+    .btns{
+        left: 50%;
+        
+        padding: 15px 32px 15px 32px ;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        background-color: #4CAF50; /* Green */
+        border-radius: 50px;
+        font-family: 'Rubik', sans-serif;
+      color: white;
+    }
+    .RB{
+      font-family: 'Rubik', sans-serif;
+      font-size: 60px;
+    }
+  </style>
   <body>
+    <nav>
+      <div class="nav-wrapper #000000 black op">
+        <a  href="{%url 'First'%}" class=" log">Spotify</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li class="PG"><a href="#">Premium</a></li>
+          <li class="PG"><a href="#">Ayuda</a></li>
+          <li class="PG"><a href="#">Descargar</a></li>
+          <li class="PG Selected"><a href="{%url 'Registro'%}">Registrate</a></li>
+          <li class="PG "><a href="{% url 'Home'%}">Inicio Sesion</a></li>
+        </ul>
+      </div>
+    </nav>
 
 <div class="container">
   <div class="container">
-    <h4 class="text-center">Registro</h4>
+    <h4 class="text-center RB">Registro</h4>
   </div>
   <div class="container">
     {%if messages%}
@@ -18,7 +71,7 @@
       {%endfor%}
     {%endif%}
     {{form.non_field_errors}}
-      <form class="" action="#" method="POST">
+      <form class="" enctype="multipart/form-data" action="{%url 'Registro'%}" method="POST">
         {% csrf_token %}
         {%for field in form%}
           <div class="form-group">
@@ -35,11 +88,9 @@
           {{form.password.label_tag}}
           {{form.password}}
         </div> -->
-      <input type="submit" name="" class="btn btn-primary" value="Registrarse">
+      <input type="submit" name="" class="btns" value="Registrarse">
       </form>
-      <a href="{% url 'Home'%}">
-      <button class="btn btn-primary">Volver al Inicio</button>
-      </a>
+    
   </div>
 
 

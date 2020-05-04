@@ -16,6 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from Apps.Usuarios import views as views_usuarios
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 urlpatterns = [
     path('',views_usuarios.Home,name='Home'),
 ]
+
+urlpatterns += staticfiles_urlpatterns()

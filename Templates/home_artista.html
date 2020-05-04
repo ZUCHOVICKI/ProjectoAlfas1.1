@@ -1,0 +1,86 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Rubik:wght@500&display=swap" rel="stylesheet"> 
+    <!-- Compiled and minified CSS -->
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+ <!-- Compiled and minified JavaScript -->
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenido Artista</title>
+</head>
+<style>
+    body{
+        background: rgb(224,134,7);
+    background: radial-gradient(circle, rgba(224,134,7,1) 0%, rgba(241,68,92,1) 47%, rgba(224,134,7,1) 100%);
+    
+    }
+.log{
+        font-family: 'Rubik', sans-serif;
+        margin-left: 20px;
+        font-size: 50px;
+        text-shadow: 2px 2px  #22C95C;
+    }
+    .PG{
+        font-family: 'Montserrat', sans-serif;
+        margin-right: 10px;
+    }
+
+</style>
+<body>
+    <nav>
+        <div class="nav-wrapper #000000 black op">
+          <a  href="#" class=" log">Spotify</a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li class="PG"><a href="#">Perfil</a></li>
+            <li class="PG"><a href="#">Ajustes</a></li>
+            <li class="PG"><a href="{%url 'First'%}">LOG OUT</a></li>
+          </ul>
+        </div>
+      </nav>
+
+      <div class="row">
+        <div class="col s4 offset-s2  ">
+          <div class="card #212121 grey darken-4">
+            <div class="card-content white-text">
+              <span class="card-title">Agregar Una Cancion</span>
+            </div>
+            <div class="card-action">
+              <a href="#">Agregar una Cancion</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col s4 offset-s6">
+          <div class="card grey darken-4">
+            <div class="card-content white-text">
+              <span class="card-title">Modificar Una Cancion</span>
+            </div>
+            <div class="card-action">
+              <a href="#">Modificar una Cancion</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col s4 offset-s2 ">
+          <div class="card grey darken-4">
+            <div class="card-content white-text">
+              <span class="card-title">Estadisticas</span>
+            </div>
+            <div class="card-action">
+              <a href="#">Estadisticas</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+</body>
+</html>

@@ -40,7 +40,8 @@ class Album(models.Model):
     def __str__(self):
         return self.nombre
 
-
+def user_directory_path(instance,filename):
+    return'/'.join(['fotos_perfil/',instance.username+'.jpg'])
 class User(AbstractUser):
 
     PAISES = [
@@ -49,12 +50,17 @@ class User(AbstractUser):
         , ('EU','Estados Unidos')
     ]
 
+    artist = [
 
+        (True,'SI')
+        , (False,'NO')
+
+    ]
     is_premium = models.BooleanField(default=False,null=False,blank=False)
     fechaNacimiento = models.DateField(auto_now = False , auto_now_add = False,null=True,blank=True)
     pais = models.CharField(max_length = 2, choices = PAISES,null=False,blank=False)
-    foto = models.ImageField(upload_to=image_Path_User,null=True,blank=True)
-    is_artist = models.BooleanField(default=False,null=False,blank=False)
+    foto = models.ImageField(upload_to=user_directory_path,null=True,blank=True)
+    is_artist = models.BooleanField(default=False,choices = artist,null=False,blank=False)
 # class Usuario(models.Model):
 #     nombre =  models.CharField(max_length = 60)
 #     apellidos  =  models.CharField(max_length = 100, null= True)

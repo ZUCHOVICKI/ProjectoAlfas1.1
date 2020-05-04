@@ -1,0 +1,152 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+   
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Rubik:wght@500&display=swap" rel="stylesheet"> 
+
+ <!-- Compiled and minified CSS -->
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+ <!-- Compiled and minified JavaScript -->
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <meta charset="UTF-8">
+
+    <title>Bienvenido a Spotify</title>
+</head>
+<style>
+
+
+  main {
+    flex: 1 0 auto;
+  }
+    body{
+        background: rgb(224,134,7);
+    background: radial-gradient(circle, rgba(224,134,7,1) 0%, rgba(241,68,92,1) 47%, rgba(224,134,7,1) 100%);
+    display: flex;
+    min-height: 200vh;
+    flex-direction: column;
+    }
+    .log{
+        font-family: 'Rubik', sans-serif;
+        margin-left: 20px;
+        font-size: 50px;
+        text-shadow: 2px 2px  #22C95C;
+    }
+    .PG{
+        font-family: 'Montserrat', sans-serif;
+        margin-right: 10px;
+    }
+    .PGF{
+
+        font-family: 'Montserrat', sans-serif;
+        margin-right: 50px;
+
+
+    }
+    .op{
+        opacity: 0.7
+    }
+    .center{
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        margin-top: -50px;
+        margin-left: -100px;
+        color: white;
+        font-family: 'Rubik', sans-serif;
+
+    }
+    .center3{
+        position: fixed;
+        top:60%
+    }
+    .center2{
+        position: fixed;
+        top:65%;
+        padding: 15px 32px 15px 32px ;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        background-color: #4CAF50; /* Green */
+        border-radius: 50px;
+    }
+    .down{
+
+        top:10%
+    }
+    .fixed{
+
+        position: fixed;
+    }
+</style>
+<body  >
+  
+    <nav>
+        <div class="nav-wrapper #000000 black op">
+          <a  href="#" class=" log">Spotify</a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li class="PG"><a href="#">Premium</a></li>
+            <li class="PG"><a href="#">Ayuda</a></li>
+            <li class="PG"><a href="#">Descargar</a></li>
+            <li class="PG"><a href="{%url 'Registro'%}">Registrate</a></li>
+            <li class="PG"><a href="{% url 'Home'%}">Inicio Sesion</a></li>
+          </ul>
+        </div>
+      </nav>
+            
+<main  >
+   <div class="row fixed">
+       <h1 class="col s6 offset-s3 center">Música Para TODOS</h1>
+       <h6 class="col s4 offset-s4 center center3">Millones de Canciones . Sin Tarjeta de Credito</h6>
+       <button class=" offset-s4 center center2">Obten Spotify Ya</button>
+</div>  
+
+</main>
+
+<footer class="page-footer #000000 black ">
+    <div class="container down">
+      <div class="row">
+        <div class="col l2">
+          <h5 class="white-text">Spotify</h5>
+          
+        </div>
+        <div class="col 20 offset-6 ">
+         
+          <ul class="col 4">
+            <li><a class="grey-text text-lighten-3 PGF" href="#!">Compañia</a></li>
+            <li><a class="grey-text text-lighten-3 PGF" href="#!">Acerca de </a></li>
+            <li><a class="grey-text text-lighten-3 PGF" href="#!">Empleos</a></li>
+            <li><a class="grey-text text-lighten-3 PGF" href="#!">For the Records</a></li>
+          </ul>
+         
+         
+          <ul class="col 4">
+            <li><a class="grey-text text-lighten-3 PGF" href="#!">Comunidades</a></li>
+            <li><a class="grey-text text-lighten-3 PGF" href="#!">Servicio de artistas </a></li>
+            <li><a class="grey-text text-lighten-3 PGF" href="#!">Desarrolladores</a></li>
+            <li><a class="grey-text text-lighten-3 PGF" href="#!">Marcas</a></li>
+          </ul>
+        
+      
+          <ul class="col 4">
+            <li><a class="grey-text text-lighten-3 PGF" href="#!">Enlaces Útiles</a></li>
+            <li><a class="grey-text text-lighten-3 PGF" href="#!">Ayuda </a></li>
+            <li><a class="grey-text text-lighten-3 PGF" href="#!">Reproductor web</a></li>
+            <li><a class="grey-text text-lighten-3 PGF" href="#!">FApp Movil Gratis</a></li>
+          </ul>
+          
+        </div>
+      </div>
+    </div>
+   
+
+
+</div>
+    
+    
+</body>
+</html>

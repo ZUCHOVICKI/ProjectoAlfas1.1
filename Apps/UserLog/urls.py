@@ -16,7 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from Apps.UserLog import views as views_UserLog
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 urlpatterns = [
-    path('',views_UserLog.loginn,name='Home'),
+    path('',views_UserLog.First,name='First'),
+    path('Home',views_UserLog.loginn,name='Home'),
     path('Registro',views_UserLog.Registro,name='Registro')
 ]
+
+urlpatterns += staticfiles_urlpatterns()

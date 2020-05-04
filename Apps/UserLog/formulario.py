@@ -23,14 +23,16 @@ class RegisterForm(ModelForm):
         'fechaNacimiento':forms.DateInput(format ='%d/%m/%y',attrs={'class':'form-control','placeholder':'DD/MM/YY'}),
         'foto':forms.ClearableFileInput(attrs={'class':'form-control','placeholder':'Ingresa Tu Foto'}),
         'pais':forms.Select(attrs={'class':'form-control','placeholder':'Selecciona tu pais'}),
-        'is_artist':forms.CheckboxInput(attrs={'class':'form-check-label',}),
+        'is_artist':forms.Select(attrs={'class':'form-control','placeholder':'Eres Artista?'}),
 
         }
+        # 'form-check-label'
 
         labels={
         'fechaNacimiento' :'Fecha de Nacimiento',
         'pais' :'PaisActual',
-        'foto' : 'FotodePerfil'
+        'foto' : 'FotodePerfil',
+        'is_artist':'Artista?'
 
         }
         help_texts = {
