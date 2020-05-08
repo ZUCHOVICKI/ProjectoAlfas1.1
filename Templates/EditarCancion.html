@@ -1,0 +1,71 @@
+{%extends "NAVExtend.html"%}
+
+
+{%block Contenido%}
+{%load static%}
+
+
+
+
+
+
+{%regroup canciones by album as lista_albums%}
+
+{%for album in lista_albums%}
+{% csrf_token %}
+  <div class="row" id="idAlbum" data-idalbum = "{{idAlbum}}">
+    <div class="col s10 offset-s1">
+        <div class="col s5 ">
+
+            <img height="400" width="400" src="{{MEDIA_URL}}{{album.grouper.foto}}" alt="">
+        </div>
+        <div class="col s5">
+        <div class="card #212121 grey darken-4">
+            <div class="card-content white-text"> 
+                <h1 class="log" id="NombreAlbum">{{album.grouper.nombre}}</h1>
+                <a class="btn-floating btn-large waves-effect waves-light red " onclick="actualizarAlbum()"><i class="material-icons">mode_edit</i></a>
+        
+                
+                    <tr>
+                        <td class="PG" ><p id="FechaAlbum">{{album.grouper.fecha}}</p></td>
+                        <td  class="PG" ><p id="GeneroAlbum">{{album.grouper.Genero}}</p></td>
+                        <td  class="PG" ><p id="GeneroAlbum">{{album.grouper.duracion}}</p></td>
+                      </tr>
+                    
+               
+                
+            </div>
+        </div>
+    </div>
+    <div class="col s10 ">
+        <div class="card #212121 grey darken-4">
+            <div class="card-content white-text">
+        <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th> Name</th>
+                <th> Autor</th>
+            </tr>
+          </thead>
+          
+          {%for cancion in album.list%}
+          <tbody>
+            <tr>
+              <td>{{forloop.counter}}</td>
+              <td>{{cancion.nombre}}</td>
+              <td>{{cancion.autor}}</td>
+            </tr>
+           
+            </tbody>
+        {%endfor%}
+        </table>
+    </div>
+    </div>
+    </div>
+    </div>
+  </div>
+
+  {%endfor%}
+
+{%endblock%}

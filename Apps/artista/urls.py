@@ -19,6 +19,12 @@ from Apps.artista import views as views_artista
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 urlpatterns = [
     path('',views_artista.HomeAR,name='Home_AR'),
+    path('Perfil',views_artista.Perfil,name='Perfil'),
+    path('Canciones',views_artista.Canciones,name='Canciones'),
+    path('NuevaCancion',views_artista.NuevaCancion,name='NuevaCancion'),
+    path('EditarCancion/<int:idAlbum>',views_artista.EditarCancion,name='EditarCancion'),
+    path('ActualizarAlbum',views_artista.actualizarAlbum,name='actualizarAlbum'),
+    path('NewPassword',views_artista.NewPassword,name='NewPassword')
 ]
 
 urlpatterns += staticfiles_urlpatterns()

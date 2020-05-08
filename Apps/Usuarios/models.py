@@ -4,11 +4,22 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from django.contrib.auth.models import AbstractUser
 from Apps.Usuarios.models import User
-def image_Path():
-    return os.path.join(settings.STATICFILES_DIR,'img')
+from django.core.validators import FileExtensionValidator
+
+def image_Path(album,filename):
+    return '{0}/{1}/{2}/{3}'.format("albums",album.artista,album.nombre,"cover.jpg")
 def image_Path_User():
     return os.path.join(settings.STATICFILES_DIR,'UserImg')
 # Create your models here.
+
+
+def CancionDirectory(instance,filename):
+
+
+    numero_cancion = Cancion.objects.filter(album=instance.album).count()
+    numero_cancion += 1 
+    return '{0}/{1}/{2}/{3}'.format("albums",instance.album.artista,instance.album,filename,str(numero_cancion)+ " - "+instance.nombre+".mp3")
+
 
 class Cancion(models.Model):
     nombre = models.CharField(max_length = 50)
@@ -16,6 +27,8 @@ class Cancion(models.Model):
     autor = models.CharField(max_length = 100 )
     calificacion = models.DecimalField(max_digits=4,decimal_places=2 , null = True,blank = True)
     album = models.ForeignKey('Album',on_delete=models.CASCADE)
+    archivo = models.FileField(upload_to=CancionDirectory , null=False , blank= False , max_length=100,
+     validators=[FileExtensionValidator(['mp3'])])
 
     def __str__(self):
         return "{}-{}".format(self.nombre , self.album)
@@ -26,12 +39,16 @@ class Cancion(models.Model):
 
 
 class Album(models.Model):
+
+    
+
     nombre =  models.CharField(max_length = 50)
     duracion = models.DecimalField(max_digits = 4 , decimal_places = 2, null = True ,blank = True)
     fecha = models.DateField(auto_now= False, auto_now_add = False)
     foto = models.ImageField(upload_to =image_Path , max_length=100, null = True ,blank = True)
     Genero = models.ForeignKey('Genero',on_delete=models.CASCADE)
     Disquera = models.ForeignKey('Disquera',on_delete=models.CASCADE)
+    artista = models.ForeignKey('User',on_delete=models.CASCADE)
 
     class Meta:
         verbose_name = "Album"

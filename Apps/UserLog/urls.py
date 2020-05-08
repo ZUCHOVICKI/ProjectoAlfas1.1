@@ -20,7 +20,8 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 urlpatterns = [
     path('',views_UserLog.First,name='First'),
     path('Home',views_UserLog.loginn,name='Home'),
-    path('Registro',views_UserLog.Registro,name='Registro')
+    path('Registro',views_UserLog.Registro,name='Registro'),
+    
 ]
 
 urlpatterns += staticfiles_urlpatterns()

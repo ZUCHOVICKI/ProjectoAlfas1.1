@@ -88,3 +88,8 @@ def Registro(request):
     else:
         form = RegisterForm()
         return render(request,'Registro.html',{'form':form})
+
+
+
+
+#########################

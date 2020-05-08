@@ -1,0 +1,103 @@
+{%extends "NAVExtend.html"%}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Rubik:wght@500&display=swap" rel="stylesheet"> 
+    <!-- Compiled and minified CSS -->
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+ <!-- Compiled and minified JavaScript -->
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+ {%block Contenido%}   
+
+ {%load static%}
+{%for dato in datos%}
+
+ 
+    <div class="row">
+        <div class="col s3 offset-s2 ">
+          <div class="card #212121 grey darken-4">
+            <div class="card-content white-text">
+              <span class="card-title center-align">Perfil</span>
+              <div class="card-action">
+                <a href="{%url 'NewPassword'%}">Cambiar Contraseña</a>
+              </div>
+             <div class="card-action">
+              <a href="#modal1">Desactivar Cuenta</a>
+            </div>
+              
+            </div>
+            
+          </div>
+        </div>
+
+
+        <div class="col s4 push-s1">
+            <div class="card #212121 grey darken-4">
+              <div class="card-image">
+                <img src="{{MEDIA_URL}}{{dato.foto}}" >
+                
+              </div>
+              
+            </div>
+          </div>
+
+
+
+      </div>
+
+<div class="row">
+<div class="col s3 offset-s2  ">
+<div class="card #212121 grey darken-4">
+<div class="card-content white-text">
+<span class="card-title">{{dato.username}}</span>
+</div>
+
+</div></div>
+
+
+<div class="col s3 offset-s2  ">
+<div class="card #212121 grey darken-4">
+<div class="card-content white-text">
+    <span class="card-title">Estatus Premium = {{dato.is_premium}}</span>
+</div>
+</div></div> 
+                    
+
+    <div class="col s3 offset-s2  ">
+        <div class="card #212121 grey darken-4">
+        <div class="card-content white-text">
+            <span class="card-title">{{dato.first_name}} {{dato.last_name}}</span>
+        </div>
+       </div></div> 
+                            
+
+    <div class="col s4 offset-s2  ">
+        <div class="card #212121 grey darken-4">
+        <div class="card-content white-text">
+            <span class="card-title">{{dato.email}}</span>
+        </div>
+        </div></div> 
+
+<div class="col s3 offset-s2  ">
+    <div class="card #212121 grey darken-4">
+    <div class="card-content white-text">
+        <span class="card-title">{{dato.date_joined}}</span>
+    </div>
+    </div></div> </div>                                    
+                                    
+
+      
+      
+</body>
+</html>
+
+{%endfor%}
+{%endblock%}

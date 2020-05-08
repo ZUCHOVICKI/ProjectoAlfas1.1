@@ -34,10 +34,10 @@
 <body>
     <nav>
         <div class="nav-wrapper #000000 black op">
-          <a  href="#" class=" log">Spotify</a>
+          <a  href="{%url 'Home_AR'%}" class=" log">Spotify</a>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li class="PG"><a href="#">Perfil</a></li>
-            <li class="PG"><a href="#">Ajustes</a></li>
+            <li class="PG"><a href="{%url 'Perfil'%}">Perfil</a></li>
+          <li class="PG"><a href="{%url 'Canciones'%}">Canciones</a></li>
             <li class="PG"><a href="{%url 'First'%}">LOG OUT</a></li>
           </ul>
         </div>
@@ -50,7 +50,7 @@
               <span class="card-title">Agregar Una Cancion</span>
             </div>
             <div class="card-action">
-              <a href="#">Agregar una Cancion</a>
+              <a href="{%url 'Canciones'%}">Agregar una Cancion</a>
             </div>
           </div>
         </div>
@@ -63,7 +63,7 @@
               <span class="card-title">Modificar Una Cancion</span>
             </div>
             <div class="card-action">
-              <a href="#">Modificar una Cancion</a>
+              <a href="{%url 'Canciones'%}">Modificar una Cancion</a>
             </div>
           </div>
         </div>
@@ -73,10 +73,10 @@
         <div class="col s4 offset-s2 ">
           <div class="card grey darken-4">
             <div class="card-content white-text">
-              <span class="card-title">Estadisticas</span>
+              <span class="card-title">Perfil</span>
             </div>
             <div class="card-action">
-              <a href="#">Estadisticas</a>
+              <a href="{% url 'Perfil'%}">Perfil y Ajustes</a>
             </div>
           </div>
         </div>

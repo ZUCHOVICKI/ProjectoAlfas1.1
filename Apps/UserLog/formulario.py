@@ -2,7 +2,7 @@ from django import forms
 from django.forms import ModelForm
 # from django.contrib.auth.models import User
 from Apps.Usuarios.models import User
-
+from Apps.Usuarios.models import Album
 
 class LoginForm(forms.Form):
     username = forms.CharField(label="Usuario",max_length=50,min_length=5,required=True,
@@ -40,3 +40,4 @@ class RegisterForm(ModelForm):
         'password':'Maximo 8 Caracteres'
 
         }
+
