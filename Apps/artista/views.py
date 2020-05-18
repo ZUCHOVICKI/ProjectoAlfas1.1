@@ -21,7 +21,7 @@ def Perfil(request):
 
 
 def Canciones(request):
-    canciones = Cancion.objects.filter(album__artista=request.user)
+    canciones = Cancion.objects.filter(album__artista=request.user).order_by("album")
     print(canciones)
     albums = Album.objects.filter(artista=request.user)
     print(albums)
@@ -91,5 +91,67 @@ def NewPassword(request):
 
 def actualizarAlbum(request):
     datos  = json.loads(request.body)
-    print(datos)
-    return HttpResponse("Hola Soy el back de django")
+    # print(datos)
+
+    idAlbum = int(datos['idAlbum'])
+    fechaAlbum = datos['FechaAlbum']
+    NombreAlbum = datos['NombreAlbum']
+    GeneroAlbum = datos['GeneroALbum']
+
+
+    try:
+        album = Album.objects.get(id=idAlbum)
+
+        album.fecha = fechaAlbum
+        album.nombre = NombreAlbum
+        
+
+        genero_nuevo , fueCreado = Genero.objects.get_or_create(nombre=GeneroAlbum)
+        album.genero =genero_nuevo
+        album.save()
+        return HttpResponse(True)
+    except Exception as identifier: 
+        print(identifier)
+        return HttpResponse(False)
+    
+
+def EliminarAlbum(request) : 
+    idAlbum = int(json.loads(request.body))
+    print(idAlbum)
+
+   
+
+    try:
+        album = Album.objects.get(id=idAlbum)
+
+        album.delete()
+        return HttpResponse(True)
+    except Exception as identifier:
+        print(identifier)
+        return HttpResponse(False)
+    
+
+def agregarCancion(request):
+    nombreCancion = request.POST['nombreCancion']
+    duracionCancion = request.POST['duracionCancion']
+    autorCancion = request.POST['autorCancion']
+    idAlbum = request.POST['idAlbum']
+    archivoCancion = request.FILES['archivoCancion']
+    print(nombreCancion,duracionCancion,autorCancion,idAlbum,archivoCancion)
+
+
+    try:
+        
+        Cancion.objects.create(
+         nombre = nombreCancion,
+         duracion = duracionCancion,
+         autor = autorCancion,
+         album_id = idAlbum,
+         archivo = archivoCancion
+        )
+        print("HOLA")
+        return HttpResponse(True)
+    except Exception as error:
+        print(error)
+        
+        return HttpResponse(False)

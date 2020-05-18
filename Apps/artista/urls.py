@@ -24,6 +24,8 @@ urlpatterns = [
     path('NuevaCancion',views_artista.NuevaCancion,name='NuevaCancion'),
     path('EditarCancion/<int:idAlbum>',views_artista.EditarCancion,name='EditarCancion'),
     path('ActualizarAlbum',views_artista.actualizarAlbum,name='actualizarAlbum'),
+    path('delete',views_artista.EliminarAlbum,name='EliminarAlbum'),
+    path('AddCancion',views_artista.agregarCancion,name='agregarCancion'),
     path('NewPassword',views_artista.NewPassword,name='NewPassword')
 ]
 

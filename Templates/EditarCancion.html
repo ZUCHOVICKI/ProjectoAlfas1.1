@@ -4,15 +4,58 @@
 {%block Contenido%}
 {%load static%}
 
+<script>
+
+  $(function(){
+    $("#FechaAlbum").datepicker({
+
+      maxDate:"+5Y",
+      dateFormat:"yy-mm-dd",
+      showAnim : "slide"
+    })
+
+  })
+</script>
+
+<style>
 
 
+    #NombreAlbum {
 
+      color: white;
+      font-size: 40px;
+
+    }
+
+    .IN{
+
+      color: white;
+      font-size: 25px;
+
+    }
+    .log2{
+            font-family: 'Rubik', sans-serif;
+            right: 300px;
+            font-size: 40px;
+            text-shadow: 2px 2px  #22C95C;
+            color: white;
+        }
+        .log3{
+            font-family: 'Rubik', sans-serif;
+            
+            font-size: 40px;
+            text-shadow: 2px 2px  rgba(187, 15, 15, 0.747);
+            color: white;
+        }
+</style>
 
 
 {%regroup canciones by album as lista_albums%}
 
 {%for album in lista_albums%}
 {% csrf_token %}
+
+
   <div class="row" id="idAlbum" data-idalbum = "{{idAlbum}}">
     <div class="col s10 offset-s1">
         <div class="col s5 ">
@@ -22,14 +65,14 @@
         <div class="col s5">
         <div class="card #212121 grey darken-4">
             <div class="card-content white-text"> 
-                <h1 class="log" id="NombreAlbum">{{album.grouper.nombre}}</h1>
+                <input class="log" id="NombreAlbum" value="{{album.grouper.nombre}}">
                 <a class="btn-floating btn-large waves-effect waves-light red " onclick="actualizarAlbum()"><i class="material-icons">mode_edit</i></a>
-        
+                <a class="btn-floating btn-large waves-effect waves-light red " onclick="eliminarAlbum()"><i class="material-icons">delete_forever</i></a>
                 
                     <tr>
-                        <td class="PG" ><p id="FechaAlbum">{{album.grouper.fecha}}</p></td>
-                        <td  class="PG" ><p id="GeneroAlbum">{{album.grouper.Genero}}</p></td>
-                        <td  class="PG" ><p id="GeneroAlbum">{{album.grouper.duracion}}</p></td>
+                        <td class="PG" ><input class="IN" value="{{album.grouper.fecha|date:"Y-m-d"}}" id="FechaAlbum"></td>
+                        <td  class="PG" ><input class="IN" id="GeneroAlbum" value="{{album.grouper.Genero}}"></td>
+                        <td  class="PG" ><input  class="IN" id="GeneroAlbum"  value="{{album.grouper.duracion}}"></td>
                       </tr>
                     
                
@@ -40,7 +83,7 @@
     <div class="col s10 ">
         <div class="card #212121 grey darken-4">
             <div class="card-content white-text">
-        <table>
+        <table id="idTable">
         <thead>
             <tr>
                 <th>#</th>
@@ -56,16 +99,65 @@
               <td>{{cancion.nombre}}</td>
               <td>{{cancion.autor}}</td>
             </tr>
-           
+            
             </tbody>
         {%endfor%}
-        </table>
+        
+        </table><a class="waves-effect waves-light btn modal-trigger" href="#modal1"><i class="material-icons">add</i></a>
     </div>
     </div>
     </div>
     </div>
   </div>
+  
 
   {%endfor%}
+
+  
+ <div id="ModalExito" class="modal #66bb6a green lighten-1">
+  <div class="modal-content">
+    <h1 class="log">Agregar Cancion</h1>
+    <p>Cancion Agregada Exitosamente</p>
+  </div>
+ </div>
+ 
+
+ <div id="ModalError" class="modal #ef5350 red lighten-1">
+  <div class="modal-content">
+    <h1 class="log">Agregar Cancion</h1>
+    <p>Error al Agregar Cancion</p>
+  </div>
+ </div>
+
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal #212121 grey darken-4" >
+    <div class="modal-content">
+      <h4 style="color: white;">Agregar Una Cancion</h4>
+      <div class="form-group">
+        <input id="nombreCancion" type="text" placeholder="Nombre de La Cancion" class="form form-control">
+      </div>
+      <div class="form-group">
+        <input id="duracionCancion" type="number" placeholder="Duracion de La Cancion" min="0" step=".01"
+         class="form form-control" value="0.0">
+      </div>
+      <div class="form-group">
+        <input id="autorCancion" type="text" placeholder="Autor(es) de La Cancion" class="form form-control">
+      </div>
+      <div class="form-group">
+        <input id="albumCancion" data-idalbum="{{lista_albums.0.grouper.id}}" type="text" 
+        placeholder="Album de La Cancion" class="form form-control" disabled value="{{lista_albums.0.grouper.nombre}}">
+      </div>
+      <div class="form-group">
+        <input id="archivoCancion" type="file" accept=".mp3" name="archivo" 
+        placeholder="Archivo de La Cancion" class="form form-control">
+      </div>
+     
+      
+    </div>
+    <div class="modal-footer #000000 black">
+      <a  onclick="agregarCancion()" class=" modal-close btn-flat log2">Agregar</a>
+      <a  class="modal-close waves-effect waves-green btn-flat log3">Cerrar</a>
+    </div>
+  </div>
 
 {%endblock%}
