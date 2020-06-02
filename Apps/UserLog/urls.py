@@ -21,7 +21,7 @@ urlpatterns = [
     path('',views_UserLog.First,name='First'),
     path('Home',views_UserLog.loginn,name='Home'),
     path('Registro',views_UserLog.Registro,name='Registro'),
-    
+    path('CerrarSesion',views_UserLog.cerrarSesion,name='cerrarSesion')
 ]
 
 urlpatterns += staticfiles_urlpatterns()

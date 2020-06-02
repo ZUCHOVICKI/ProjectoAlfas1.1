@@ -1,74 +1,87 @@
 {%extends "NAVExtend.html"%}
 
 {%block Contenido%}
+
+
+<script>
+  $(function(){
+    $("#FechaAlbum").datepicker({
+
+      maxDate:"+5Y",
+      dateFormat:"yy-mm-dd",
+      showAnim : "slide"
+    })
+
+  })
+</script>
 <style>
+.log2{
+  font-family: 'Rubik', sans-serif;
+  right: 300px;
+  font-size: 40px;
+  text-shadow: 2px 2px  #22C95C;
+  color: white;
+}</style>
 
-    .log{
-            font-family: 'Rubik', sans-serif;
-            margin-left: 20px;
-            font-size: 50px;
-            text-shadow: 2px 2px  #22C95C;
-        }
-        .PG{
-            font-family: 'Montserrat', sans-serif;
-            margin-right: 10px;
-        }
-        .Selected{
-          text-shadow: 2px 2px  #22C95C;
-    
-        }
-        .btns{
-            left: 50%;
-            
-            padding: 15px 32px 15px 32px ;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            background-color: #4CAF50; /* Green */
-            border-radius: 50px;
-            font-family: 'Rubik', sans-serif;
-          color: white;
-        }
-        .RB{
-          font-family: 'Rubik', sans-serif;
-          font-size: 60px;
-        }
-      </style>
-
-<div class="container">
-    <div class="container">
-      <h4 class="log">Nueva Cancion</h4>
-    </div>
-    <div class="container">
-      {%if messages%}
-        {%for message in messages%}
-          {{message}}
-        {%endfor%}
-      {%endif%}
-      {{form.non_field_errors}}
-        <form class="" enctype="multipart/form-data" action="{%url 'NuevaCancion'%}" method="POST">
-          {% csrf_token %}
-          {%for field in form%}
-            <div class="form-group">
-              {{field.errors}}
-              {{field.label_tag}}
-              {{field}}
-              <small class="form-text text-muted">{{field.help_text}}</small>
+<div class="row #212121 grey darken-4">
   
-            </div>
-          {%endfor%}
-          <!-- <div class="form-group">
-            {{form.username.label_tag}}
-            {{form.username}}
-            {{form.password.label_tag}}
-            {{form.password}}
-          </div> -->
-        <input type="submit" name="" class="btns" value="Agregar Cancion">
-        </form>
-      
-    </div>
-  
-  
+  <div class="input-field col s12">
+    <input style="color: white;" id="NombreAlbum" type="text" class="validate">
+    <label for="NombreAlbum">Nombre del Album</label>
   </div>
+
+  <div class="input-field col s12">
+    <input  id="FechaAlbum" type="date" class="validate">
+    <label for="FechaAlbum">Fecha del Album</label>
+  </div>
+
+  <div class="file-field input-field col s12">
+    <div class="btn green">
+      <span>Foto</span>
+      <input id="fotoAlbum" type="file">
+    </div>
+    <div class="file-path-wrapper">
+      <input class="file-path validate" id="fotoAlbumImg" type="text">
+    </div>
+  </div>
+
+  <div class="input-field col s12">
+    <input  id="disqueraAlbum" type="text" class="validate">
+    <label for="disqueraAlbum">Disquera del Album</label>
+  </div>
+
+  <div class="input-field col s12">
+    <input  id="generoAlbum" type="text" class="validate">
+    <label for="generoAlbum">Genero del Album</label>
+  </div>
+
+  <div class="file-field input-field col s12">
+    <div class="btn green">
+      <span>Canciones</span>
+      <input id="cancionesAlbum" type="file" accept=".mp3" multiple>
+    </div>
+    <div class="file-path-wrapper">
+      <input class="file-path validate" id="cancionesAlbumtxt"  type="text">
+    </div>
+  </div>
+
+</div>
+
+          <button onclick="agregarAlbum()" class="btn green">Agregar Album</button>
+ 
+
+
+          <div id="ModalExito" class="modal #81c784 green lighten-2 ">
+            <div class="modal-content">
+            <h1 style="color: white;" class="EL">Album Creado </h1>
+            
+            
+          </div>
+          <div class="modal-footer #000000 black">
+           
+              <a  class="modal-close waves-effect waves-green btn-flat log2">Cerrar</a>
+          </div>
+        </div>
+        
+
 {%endblock%}

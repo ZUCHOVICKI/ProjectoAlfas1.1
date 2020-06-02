@@ -18,7 +18,9 @@ from django.urls import path
 from Apps.Usuarios import views as views_usuarios
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 urlpatterns = [
-    path('',views_usuarios.Home,name='Home'),
+    path('HomeU',views_usuarios.HomeU,name='HomeU'),
+    path('busqueda',views_usuarios.busqueda,name='busqueda'),
+    path('Inicio',views_usuarios.Inicio,name='Inicio')
 ]
 
 urlpatterns += staticfiles_urlpatterns()

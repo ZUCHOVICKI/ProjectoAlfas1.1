@@ -15,10 +15,34 @@
     })
 
   })
+
+$(document).on("click",".cancion" , function(){
+
+  let id = this.dataset.id
+  let nombre = this.dataset.nombre
+
+  console.log(id,nombre);
+
+  let modalConfirmacion = document.getElementById("ModalEliminarCancion");
+  modalConfirmacion.setAttribute("data-id",id);
+  let nombreCancion = document.getElementById("nombre");
+  nombreCancion.textContent= nombre;
+
+});
 </script>
 
 <style>
 
+.EL{
+
+  font-family: 'Rubik', sans-serif;
+}
+
+.editable{
+
+  color: black;
+  background-color: white;
+}
 
     #NombreAlbum {
 
@@ -49,7 +73,7 @@
         }
 </style>
 
-
+{%if canciones%}
 {%regroup canciones by album as lista_albums%}
 
 {%for album in lista_albums%}
@@ -91,18 +115,29 @@
                 <th> Autor</th>
             </tr>
           </thead>
-          
-          {%for cancion in album.list%}
           <tbody>
-            <tr>
+          {%for cancion in album.list%}
+          
+            <tr id="cancion-{{cancion.id}}">
               <td>{{forloop.counter}}</td>
               <td>{{cancion.nombre}}</td>
               <td>{{cancion.autor}}</td>
+              <td><a data-nombre ="{{cancion.nombre}}"
+                 data-id = "cancion-{{cancion.id}}" 
+                 href="#ModalEliminar"
+                 id="btn-eliminar-cancion-{{cancion.id}}"
+                 class="waves-effect waves-red btn modal-trigger red cancion material-icons">delete</a></td>
+
+
+              <td><a  data-id = "cancion-{{cancion.id}}"
+                onclick="editarCancion(this)"
+                id="btn-editar-cancion-{{cancion.id}}"
+                class="waves-effect waves-green btn  green material-icons">create</a></td>
             </tr>
             
-            </tbody>
+            
         {%endfor%}
-        
+      </tbody>
         </table><a class="waves-effect waves-light btn modal-trigger" href="#modal1"><i class="material-icons">add</i></a>
     </div>
     </div>
@@ -112,7 +147,78 @@
   
 
   {%endfor%}
+  {%elif album%}
+  
 
+
+{% csrf_token %}
+
+
+  <div class="row" id="idAlbum" data-idalbum = "{{idAlbum}}">
+    <div class="col s10 offset-s1">
+        <div class="col s5 ">
+
+            <img height="400" width="400" src="{{MEDIA_URL}}{{album.foto}}" alt="">
+        </div>
+        <div class="col s5">
+        <div class="card #212121 grey darken-4">
+            <div class="card-content white-text"> 
+                <input class="log" id="NombreAlbum" value="{{album.nombre}}">
+                <a class="btn-floating btn-large waves-effect waves-light red " onclick="actualizarAlbum()"><i class="material-icons">mode_edit</i></a>
+                <a class="btn-floating btn-large waves-effect waves-light red " onclick="eliminarAlbum()"><i class="material-icons">delete_forever</i></a>
+                
+                    <tr>
+                        <td class="PG" ><input class="IN" value="{{album.fecha|date:"Y-m-d"}}" id="FechaAlbum"></td>
+                        <td  class="PG" ><input class="IN" id="GeneroAlbum" value="{{album.Genero}}"></td>
+                        <td  class="PG" ><input  class="IN" id="GeneroAlbum"  value="{{album.duracion}}"></td>
+                      </tr>
+                    
+               
+                
+            </div>
+        </div>
+    </div>
+    <div class="col s10 ">
+        <div class="card #212121 grey darken-4">
+            <div class="card-content white-text">
+        <table id="idTable">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th> Name</th>
+                <th> Autor</th>
+            </tr>
+          </thead>
+          <tbody>
+          {%for cancion in album.list%}
+          
+            <tr id="cancion-{{cancion.id}}">
+              <td>{{forloop.counter}}</td>
+              <td>{{cancion.nombre}}</td>
+              <td>{{cancion.autor}}</td>
+              <td><a data-nombre ="{{cancion.nombre}}"
+                 data-id = "cancion-{{cancion.id}}" 
+                 href="#ModalEliminar"
+                 id="btn-eliminar-cancion-{{cancion.id}}"
+                 class="waves-effect waves-red btn modal-trigger red cancion material-icons">delete</a></td>
+
+
+              <td><a  data-id = "cancion-{{cancion.id}}"
+                onclick="editarCancion(this)"
+                id="btn-editar-cancion-{{cancion.id}}"
+                class="waves-effect waves-green btn  green material-icons">create</a></td>
+            </tr>
+            
+            
+        {%endfor%}
+      </tbody>
+        </table><a class="waves-effect waves-light btn modal-trigger" href="#modal1"><i class="material-icons">add</i></a>
+    </div>
+    </div>
+    </div>
+    </div>
+  </div>
+{%endif%}
   
  <div id="ModalExito" class="modal #66bb6a green lighten-1">
   <div class="modal-content">
@@ -159,5 +265,19 @@
       <a  class="modal-close waves-effect waves-green btn-flat log3">Cerrar</a>
     </div>
   </div>
+
+  <div id="ModalEliminar" class="modal #212121 grey darken-4 ">
+    <div class="modal-content">
+    <h1 style="color: white;" class="EL">¿Eliminar Cancion?</h1>
+    <p class="font-weight-bold" style="color: white;" id="nombre"></p>
+    
+  </div>
+  <div class="modal-footer #000000 black">
+    <a  onclick="eliminarCancion(this)" class=" modal-close btn-flat log2 "  id="ModalEliminarCancion">Eliminar</a>
+      <a  class="modal-close waves-effect waves-green btn-flat log3">Cerrar</a>
+  </div>
+</div>
+
+
 
 {%endblock%}

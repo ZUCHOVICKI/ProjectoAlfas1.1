@@ -78,6 +78,12 @@ class User(AbstractUser):
     pais = models.CharField(max_length = 2, choices = PAISES,null=False,blank=False)
     foto = models.ImageField(upload_to=user_directory_path,null=True,blank=True)
     is_artist = models.BooleanField(default=False,choices = artist,null=False,blank=False)
+
+    def isArtist(self):
+
+     return self.is_artist
+
+     
 # class Usuario(models.Model):
 #     nombre =  models.CharField(max_length = 60)
 #     apellidos  =  models.CharField(max_length = 100, null= True)
@@ -134,3 +140,5 @@ class UsuarioCanciones(models.Model):
     class Meta:
         verbose_name = "UsuarioCanciones"
         verbose_name_plural = "Usuarios/Canciones"
+
+

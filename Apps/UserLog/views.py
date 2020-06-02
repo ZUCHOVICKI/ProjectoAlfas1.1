@@ -1,6 +1,6 @@
 from django.shortcuts import render , HttpResponse , redirect
 from .formulario import LoginForm,RegisterForm
-from django.contrib.auth import authenticate , login
+from django.contrib.auth import authenticate , login , logout
 from Apps.Usuarios import views as views_Usuarios
 from Apps.artista import views as views_artista
 # from django.contrib.auth.models import User
@@ -10,9 +10,24 @@ from Apps.Usuarios.models import User
 #JsonResponse
 #Render
 # Create your views here.
+from django.contrib.auth.decorators import login_required
+
+from django.contrib.auth.decorators import user_passes_test
+
 
 def First(request):
-    return render(request,'WelcomeHome.html')
+
+    if(request.user.is_authenticated):
+        if(request.user.is_artist):
+
+            return redirect(views_artista.HomeAR)
+
+        else:
+            return redirect(views_Usuarios.HomeU)
+    else:
+        return render(request,'WelcomeHome.html')
+
+        
 def loginn(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
@@ -22,7 +37,10 @@ def loginn(request):
             user = authenticate(request,username = username , password = password)
             if user is not None:
                 login(request,user)
-                return redirect(views_artista.HomeAR)
+                if(user.is_artist):
+                    return redirect(views_artista.HomeAR)
+                else:
+                    return redirect(views_Usuarios.HomeU)
             else:
                 form.add_error(None,'Datos Incorrectos ==> Revisa tus datos')
                 # form = LoginForm()
@@ -89,7 +107,10 @@ def Registro(request):
         form = RegisterForm()
         return render(request,'Registro.html',{'form':form})
 
-
-
+@login_required
+def cerrarSesion(request):
+    logout(request)
+    return redirect(First)
+    
 
 #########################
